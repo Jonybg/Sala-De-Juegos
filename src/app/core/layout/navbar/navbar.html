@@ -1,0 +1,38 @@
+<nav class="shadow-neon">
+<a routerLink="/home">
+    <img 
+        class=" w-36 cursor-pointer hover:scale-105 hover:brightness-110" 
+        src="assets/images/logo/pixelzone.png" 
+        alt="logo">
+</a> 
+
+        
+
+   <ul class="hidden sm:flex gap-6 font-medium text-base">
+    <li><a routerLink="/home"    routerLinkActive="active">Home</a></li>
+    <li><a routerLink="/games"   routerLinkActive="active">Games</a></li>
+    <li><a routerLink="/about"   routerLinkActive="active">About</a></li>
+    <li><a routerLink="/results" routerLinkActive="active">Results</a></li>
+  </ul>
+
+  <!-- MOBILE: controlado por menuAbierto, se oculta en desktop -->
+  <div 
+    [ngClass]="{'flex': menuAbierto, 'hidden': !menuAbierto}"
+    class="sm:hidden fixed top-18 left-0 w-full h-[calc(60vh-4rem)] bg-(--color-bg) z-50 flex-col items-center justify-center"
+  >
+    <ul (click)="menuAbierto = false" class="flex flex-col items-center gap-6 text-center font-medium text-xl">
+      <li><a routerLink="/home"    routerLinkActive="active">Home</a></li>
+      <li><a routerLink="/games"   routerLinkActive="active">Games</a></li>
+      <li><a routerLink="/about"   routerLinkActive="active">About</a></li>
+      <li><a routerLink="/results" routerLinkActive="active">Results</a></li>
+    </ul>
+  </div>
+    <button class="hidden sm:block" >Log Out</button>
+   <img
+  (click)="toggleMenu()"
+  class="sm:hidden transition-all duration-100 ease-in-out"
+  [class.rotate-360]="menuAbierto"
+  [src]="menuAbierto ? 'assets/images/nav/arrow.png' : 'assets/images/nav/menuh.png'"
+  [alt]="menuAbierto ? 'arrow' : 'menu-hamburguesa'"
+>
+</nav>
