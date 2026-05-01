@@ -1,4 +1,4 @@
-
+@import "tailwindcss";
 :root {
   --color-primary: #7C3AED;      
   --color-accent: #06B6D4;       
@@ -11,19 +11,42 @@
 
   --color-success: #22C55E;
   --color-warning: #F59E0B;
-  --color-error: #EF4444;
+  --color-error: #fa0000;
 
   --color-border: #2A2A40;
 
   --shadow-soft: 0 4px 20px rgba(0,0,0,0.4);
-
+  --font-sans: "Press Start 2P", system-ui;
   --gradient-primary: linear-gradient(135deg, #7C3AED, #06B6D4);
 }
 
 
 body {
   margin: 0;
-  font-family: 'Inter', 'Poppins', sans-serif;
+  font-family: var(--font-sans);
   background-color: var(--color-bg);
   color: var(--color-text);
+  
+}
+
+.card-neon {
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-primary);
+  border-radius: 1rem; 
+  
+  box-shadow: 
+    0 0 15px -3px var(--color-primary);
+  
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-neon:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 0 20px -2px var(--color-primary);
+}
+
+
+.shadow-neon{
+  box-shadow: 0 0 15px -3px var(--color-primary);
 }

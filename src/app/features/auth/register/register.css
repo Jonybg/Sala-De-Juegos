@@ -1,0 +1,42 @@
+label {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    padding-left: 2px;
+}
+
+input {
+    background-color: var(--color-bg);
+    border-radius: 12px;
+    border: 1.5px solid var(--color-primary);
+}
+
+input:hover {
+    transform: scale(1.05);
+}
+
+.btn-sesion {
+    background: var(--gradient-primary);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.btn-sesion:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+.btn-sesion:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    filter: none;
+}
+
+.no-count {
+    font-size: 0.7rem;
+    font-weight: 700;
+}
