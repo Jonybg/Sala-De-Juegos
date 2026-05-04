@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { NgClass } from '@angular/common'
+import { AuthService } from '../../services/auth/auth-service';
 @Component({
   selector: 'app-navbar',
   imports: [RouterLink, RouterLinkActive, NgClass],
@@ -9,12 +10,16 @@ import { NgClass } from '@angular/common'
 })
 export class Navbar {
 
-
+  authService = inject(AuthService)
   menuAbierto : boolean = false
 
 
   toggleMenu(){
     this.menuAbierto = !this.menuAbierto
+  }
+
+  logOut(){
+    this.authService.logOut()
   }
 
 }
