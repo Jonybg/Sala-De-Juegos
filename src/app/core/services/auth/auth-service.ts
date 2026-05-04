@@ -16,7 +16,7 @@ private userId = signal<IUser | null>(null);
 usuario = this.userId.asReadonly();
 
 constructor() {
-  this.supabase.auth.getSession().then(({ data }) => {
+  this.supabase.auth.getSession().then(({ data } :any ) => {
     if (data.session) {
       this.traerUsuario(data.session.user.id); 
     }

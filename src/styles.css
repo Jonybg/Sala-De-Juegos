@@ -29,6 +29,11 @@ body {
   
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .card-neon {
   background-color: var(--color-surface);
   border: 2px solid var(--color-primary);
@@ -49,4 +54,13 @@ body {
 
 .shadow-neon{
   box-shadow: 0 0 15px -3px var(--color-primary);
+}
+
+
+.swal-neon {
+  background-color: var(--color-surface) !important;
+  border: 2px solid var(--color-primary) !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 0 15px -3px var(--color-primary) !important;
+  color: var(--color-text) !important; 
 }

@@ -11,17 +11,33 @@
         @if(form.get('password')?.invalid && form.get('password')?.touched){
             <span class="text-(--color-error)">Contraseña Requerida</span>
         }
-        <button [disabled]="form.invalid" (click)="onSubmit()" type="submit" class="btn-sesion w-full sm:w-auto">Iniciar Sesion</button>
+        <button  [disabled]="form.invalid" type="submit" class="btn-sesion flex justify-center items-center w-full sm:min-w-40 h-12">
+            @if(!loading()){
+                Iniciar Sesion
+            }@else{
+                <img class="animate-spin w-20 h-24 object-contain mx-auto" src="assets/images/logo/pixelzone.png">
+            }
+        </button>
+        
         <div class="flex items-center justify-center w-full sm:w-3/4 my-4">
             <div class="grow h-px bg-(--color-text-secondary)"></div>
             <span class="px-4 text-(--color-text-secondary)">Acceso Rapido</span>
             <div class="grow h-px bg-(--color-text-secondary)"></div>
         </div>
         <div class="flex justify-center items-center gap-4 sm:gap-8">
-            <img class="img-fast shadow-neon" src="https://i.pravatar.cc/150" />
-            <img class="img-fast shadow-neon" src="https://i.pravatar.cc/150" />
-            <img class="img-fast shadow-neon" src="https://i.pravatar.cc/150" />
+            <div class="flex flex-col justify-center items-center ">
+                <img (click)="fastAccess('test1@gmail.com','123456')" class="img-fast shadow-neon" src="/assets/images/fastAccess/test1.png" />
+                <span class="text-[0.8rem]" >test1</span>
+            </div>
+            <div class="flex flex-col justify-center items-center ">
+                <img (click)="fastAccess('test2@gmail.com','123456')"  class="img-fast shadow-neon" src="/assets/images/fastAccess/test2.png" />
+                <span class="text-[0.8rem]" >test2</span>
+            </div>
+            <div class="flex flex-col justify-center items-center ">
+                <img (click)="fastAccess('test3@gmail.com','123456')"  class="img-fast shadow-neon" src="/assets/images/fastAccess/test3.png" />
+                <span class="text-[0.8rem]" >test3</span>
+            </div>
         </div>
-        <p class="mb-20 no-count text-center">¿No Tienes Cuenta? <span class="text-(--color-primary)">Registrate</span></p>
+        <p class="mb-20 no-count text-center">¿No Tienes Cuenta? <span class="text-(--color-primary)"> <a class="text-(--color-primary)" routerLink="/auth/register" >Registrate</a> </span></p>
     </form>
 </section>
