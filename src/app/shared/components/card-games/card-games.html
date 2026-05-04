@@ -1,0 +1,9 @@
+<div class="w-full h-full cursor-pointer "> 
+  <div [style.background-image]="'url(' + card().imagen_url + ')'" 
+    class="card-bg card-neon shadow-neon relative rounded-2xl overflow-hidden shadow-lg h-80 flex items-end group transition-all duration-300 hover:brightness-200 hover:scale-[1.02]">
+    <div class="absolute inset-0 bg-black/70"></div>
+    <div class="relative z-10 p-3 text-white w-full">
+      <h3 class="text-xs font-black   mb-1">{{ card().title }}</h3>
+    </div>
+  </div>
+</div>

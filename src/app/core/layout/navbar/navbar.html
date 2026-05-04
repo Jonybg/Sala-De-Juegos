@@ -15,7 +15,6 @@
     <li><a routerLink="/results" routerLinkActive="active">Results</a></li>
   </ul>
 
-  <!-- MOBILE: controlado por menuAbierto, se oculta en desktop -->
   <div 
     [ngClass]="{'flex': menuAbierto, 'hidden': !menuAbierto}"
     class="sm:hidden fixed top-18 left-0 w-full h-[calc(60vh-4rem)] bg-(--color-bg) z-50 flex-col items-center justify-center"
