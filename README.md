@@ -67,12 +67,6 @@
 |:-----------:|:---------:|
 | ![inspiracion-preguntados]() | ![resultado-preguntados]() |
 
----
-
-### 🕹️ Juego Propio
-| Inspiración | Resultado |
-|:-----------:|:---------:|
-| ![inspiracion-juego-propio]() | ![resultado-juego-propio]() |
 
 ---
 

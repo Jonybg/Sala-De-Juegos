@@ -54,7 +54,11 @@ constructor() {
       password: form.password
     })
 
-     if(error) throw error;
+    if(error) throw error;
+    if (!data.user) {
+    throw new Error('No se obtuvo el usuario');
+  }
+
 
      this.userAuth.set(data.user?.id)
 
