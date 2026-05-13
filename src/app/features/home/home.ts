@@ -21,19 +21,23 @@ export class Home {
   cards:ICardGames[] =[
     {
       title:"AHORCADO",
-      imagen_url: "https://i.postimg.cc/zBgX3W7C/ahorac-ado.png"
+      imagen_url: "https://i.postimg.cc/zBgX3W7C/ahorac-ado.png",
+      ruta: "/games/ahorcado"
     },
     {
-      title: "MAYOR O MENTOR",
-      imagen_url: "https://i.postimg.cc/76zzrnHt/mayor-o-menor.png"
+      title: "MAYOR O MENOR",
+      imagen_url: "https://i.postimg.cc/76zzrnHt/mayor-o-menor.png",
+      ruta: "/games/mayormenor"
     },
     {
       title: "PREGUNTADOS",
-      imagen_url :"https://i.postimg.cc/hPZtM7gb/pregunrados.png"
+      imagen_url :"https://i.postimg.cc/hPZtM7gb/pregunrados.png",
+      ruta: "/games/ahorcado"
     },
     {
       title: "ADIVINA AL JUGADOR",
-      imagen_url : "https://i.postimg.cc/50fJfxbV/messiabout.png"
+      imagen_url : "https://i.postimg.cc/50fJfxbV/messiabout.png",
+      ruta: "/games/ahorcado"
     }
   ]
 
