@@ -11,9 +11,13 @@ export class About implements OnInit {
 
   userGithubService = inject(UserGithub)
   user = this.userGithubService.user
+  loading = this.userGithubService.loading;
+  error = this.userGithubService.error
   
 ngOnInit(): void {
-  this.userGithubService.loadUserGithub()
-  }
+  setTimeout(() => {
+    this.userGithubService.loadUserGithub();
+  }, 1000); 
+}
  
 }
