@@ -13,6 +13,7 @@ export class Alerts {
   Swal.fire({
   title: "Bienvenido! a pixelZone",
   icon: "success",
+  timer: 1500,
   draggable: true,
   customClass:{
     popup:'swal-neon'

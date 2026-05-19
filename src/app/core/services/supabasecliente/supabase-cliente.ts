@@ -5,8 +5,8 @@ import { environment } from '../../../../environments/environment';
   providedIn: 'root',
 })
 export class SupabaseCliente {
-  private supabase_url = environment.URL_SUPABASE;
-  private api_key = environment.APIKEY_SUPABASE;
-  supabase = createClient(this.supabase_url,this.api_key)
+  private readonly supabase_url = environment.URL_SUPABASE;
+  private readonly api_key = environment.APIKEY_SUPABASE;
+  readonly supabase = createClient(this.supabase_url,this.api_key)
 
 }

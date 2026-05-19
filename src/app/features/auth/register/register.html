@@ -1,5 +1,5 @@
 <section class="flex flex-col items-center justify-center min-h-3/4 w-full mx-auto mt-[3vh] px-4">
-    <form (ngSubmit)="onSubmit()" [formGroup]="form" class="card-neon w-full sm:w-3/4 md:w-2/4 gap-6 flex flex-col justify-center items-center py-10 px-8">
+    <form appCardNeon (ngSubmit)="onSubmit()" [formGroup]="form" class=" w-full sm:w-3/4 md:w-2/4 gap-6 flex flex-col justify-center items-center py-10 px-8">
 
         <img class="w-3xs" src="assets/images/logo/pixelzone.png" alt="logo">
 
@@ -61,11 +61,11 @@
             }
         }
 
-        <button [disabled]="form.invalid" (click)="onSubmit()" type="submit" class="btn-sesion w-full sm:w-auto">
+        <button [disabled]="form.invalid"  type="submit" class="btn-sesion w-full sm:w-auto">
             Crear Cuenta
         </button>
 
-        <p class="mb-4 no-count text-center">¿Ya tenés cuenta? <span class="text-(--color-primary)">Iniciá Sesión</span></p>
+        <p  class="mb-4  no-count text-center">¿Ya tenés cuenta? <span class="text-(--color-primary) cursor-pointer "  routerLink="/auth/login" >Iniciá Sesión</span></p>
 
     </form>
 </section>

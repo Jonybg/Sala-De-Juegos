@@ -1,9 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { UserGithub } from '../../core/services/user-github';
+import { CardNeon } from "../../shared/directives/card-neon";
 
 @Component({
   selector: 'app-about',
-  imports: [],
+  imports: [CardNeon],
   templateUrl: './about.html',
   styleUrl: './about.css',
 })

@@ -8,12 +8,12 @@ import { IUser } from '../../models/user';
 })
 export class AuthService {
 
-private supabaseService = inject(SupabaseCliente)
-private supabase = this.supabaseService.supabase;
-private router = inject(Router)
-private userAuth = signal<any>(null);
-private userId = signal<IUser | null>(null);
-usuario = this.userId.asReadonly();
+private readonly supabaseService = inject(SupabaseCliente)
+private readonly supabase = this.supabaseService.supabase;
+private readonly router = inject(Router)
+private readonly userAuth = signal<any>(null);
+private _userId = signal<IUser | null>(null);
+readonly usuario = this._userId.asReadonly();
 
 constructor() {
   this.supabase.auth.getSession().then(({ data } :any ) => {
@@ -31,7 +31,11 @@ constructor() {
     if(error) throw error;
 
     await this.rellenartabla(form,data)
-    this.redirigirAlLogin()
+
+    if (data.user) {
+      this.userAuth.set(data.user.id);
+      await this.traerUsuario(data.user.id);
+    }
   }
 
 
@@ -59,8 +63,6 @@ constructor() {
      this.userAuth.set(data.user?.id)
 
      await this.traerUsuario(this.userAuth())
-     this.redirigirAlHome()
-
   }
 
  
@@ -71,7 +73,7 @@ constructor() {
     .select('*')
     .eq('auth_id',userAuth)
     .single();
-    this.userId.set(usuario)
+    this._userId.set(usuario)
   }
 
   redirigirAlLogin(){
@@ -79,20 +81,24 @@ constructor() {
   }
 
   redirigirAlHome(){
-    this.router.navigate(['/home'])
+    this.router.navigate([''])
   }
 
-  async haySesion():Promise<boolean>{
-    const {data} = await this.supabase.auth.getSession();
-    if(data.session){
-      return true;
-    } else{
-      return false;
+  async haySesion(): Promise<boolean> {
+    const { data } = await this.supabase.auth.getSession();
+   if (data.session) {
+    if (!this._userId()) { 
+      await this.traerUsuario(data.session.user.id);
     }
+    return true;
   }
+  
+  return false;
+}
 
   async logOut(){
     this.supabase.auth.signOut();
+    this._userId.set(null);
     this.router.navigate(['/auth/login'])
   }
 
