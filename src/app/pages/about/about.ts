@@ -8,11 +8,11 @@ import { UserGithub } from '../../core/services/user-github';
   styleUrl: './about.css',
 })
 export class About implements OnInit {
-
-  userGithubService = inject(UserGithub)
-  user = this.userGithubService.user
-  loading = this.userGithubService.loading;
-  error = this.userGithubService.error
+//hacerlos privados los atributos de la clase
+  private userGithubService = inject(UserGithub)
+  readonly user = this.userGithubService.user
+  readonly loading = this.userGithubService.loading;
+  readonly error = this.userGithubService.error
   
 ngOnInit(): void {
   setTimeout(() => {

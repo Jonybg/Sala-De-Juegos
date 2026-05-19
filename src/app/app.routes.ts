@@ -2,13 +2,9 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
     {
-        path :"",
-        redirectTo: "home",
+        path: "",
+        loadComponent: () => import("./features/home/home").then(m => m.Home),
         pathMatch: "full"
-    },
-    {
-        path: "home",
-        loadComponent : () => import("./features/home/home").then(m=>m.Home)
     },
     {
         path: 'chat',
@@ -36,7 +32,8 @@ export const routes: Routes = [
     },
     {
         path :"**",
-        redirectTo: "home",
+        redirectTo: "",
         pathMatch: "full"
     }
 ];
+
