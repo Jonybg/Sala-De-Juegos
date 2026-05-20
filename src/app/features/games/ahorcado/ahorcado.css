@@ -1,0 +1,13 @@
+
+.boton-letra:disabled { 
+    background-color: #eee; cursor: not-allowed; opacity: 0.6;
+ }
+.mensaje { 
+    font-weight: bold; font-size: 1.5rem; margin: 15px;
+ }
+.gano { 
+    color: var(--color-success); 
+}
+.perdio { 
+    color: var(--color-error); 
+}

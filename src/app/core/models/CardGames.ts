@@ -1,4 +1,5 @@
 export interface ICardGames{
     title: string,
-    imagen_url: string;
+    imagen_url: string,
+    ruta: string;
 }

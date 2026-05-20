@@ -1,0 +1,37 @@
+<div class="flex flex-col items-center justify-center p-10 ">
+      @if (cargando()) {
+     <div class="flex flex-col items-center justify-center min-h-[60vh]">
+    <img src="assets/images/logo/pixelzone.png" class="w-32 h-32 animate-spin  mb-4" alt="Cargando...">
+    <p class="text-white text-xl font-bold animate-pulse">Preparando la sala...</p>
+  </div>
+  }@else{ <h2 class="text-3xl font-bold mb-5">Mayor o Menor</h2>
+  
+  <p class="mb-5 text-xl text-(--color-accent) font-semibold">{{ mensaje() }}</p>
+
+  <div class="w-32 h-48 card-neon shadow-neon text-(-color-text-secondary)  rounded-lg flex items-center justify-center text-6xl font-black shadow-[0_0_20px_white] mb-8">
+    {{ cartaActual() }}
+  </div>
+
+  <div class="text-2xl mb-8 text-(--color-warning)">
+    Puntaje: <span class="font-bold">{{ puntaje() }}</span>
+  </div>
+
+  @if (!perdio()) {
+    <div class="flex gap-4">
+      <button (click)="jugar('mayor')" 
+        class=" shadow-neon card-neon px-8 py-4 rounded-lg font-bold transition-transform active:scale-95">
+        MAYOR ↑
+      </button>
+      <button (click)="jugar('menor')" 
+        class="shadow-neon card-neon px-8 py-4 rounded-lg font-bold transition-transform active:scale-95">
+        MENOR ↓
+      </button>
+    </div>
+  } @else {
+    <button (click)="reiniciar()" 
+      class=" card-neon shadow-neon px-10 py-4 rounded-lg font-bold">
+      Intentar de nuevo
+    </button>
+  }}
+ 
+</div>

@@ -17,8 +17,22 @@ export const routes: Routes = [
         loadComponent: () => import('./features/chat/chat').then(m => m.Chat)
       },
       {
+        path: 'chat',
+        loadComponent: () => import('./features/chat/chat').then(m=>m.Chat)
+      },
+      {
         path: 'games',
-        loadComponent: () => import('./features/games/games').then(m => m.Games)
+        loadComponent: () => import('./features/games/games').then(m => m.Games),
+        children:[
+          {
+            path:'ahorcado',
+            loadComponent : () => import('./features/games/ahorcado/ahorcado').then(m=>m.Ahorcado)
+          },
+          {
+            path:'mayormenor',
+            loadComponent: () => import('./features/games/mayormenor/mayormenor').then(m=>m.Mayormenor)
+          }
+        ]
       },
       {
         path: 'about',
