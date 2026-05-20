@@ -16,46 +16,48 @@ private palabras = [
   'COMPUTADORA', 'ANGULAR', 'PELOTA', 'MUÑECA', 'COHETE'
 ];
 
-letras = signal<string[]>([
-  'A','B','C','D','E','F','G','H','I','J','K','L','M',
-  'N','Ñ','O','P','Q','R','S','T','U','V','W','X','Y','Z'
-])
-
-palabraAdivinar = signal(this.palabrAleatoria());
- letrasAdivinadas = signal<string[]>([]);
- intentosFallidos = signal<number>(0);
- maxIntentos = 6
- authService = inject(AuthService)
- juegoService = inject(JuegosService)
- guardo = signal(false);
-cargando = signal(true)
+private readonly _letras = signal<string[]>([
+    'A','B','C','D','E','F','G','H','I','J','K','L','M',
+    'N','Ñ','O','P','Q','R','S','T','U','V','W','X','Y','Z'
+  ]);
+readonly letras = this._letras.asReadonly()
+readonly palabraAdivinar = signal(this.palabrAleatoria());
+readonly letrasAdivinadas = signal<string[]>([]);
+readonly intentosFallidos = signal<number>(0);
+readonly maxIntentos = 6
+private readonly authService = inject(AuthService)
+private readonly juegoService = inject(JuegosService)
+private readonly _guardo = signal<boolean>(false);
+readonly guardo = this._guardo.asReadonly();
+private readonly _cargando = signal<boolean>(true);
+readonly cargando = this._cargando.asReadonly();
 
 
 constructor(){
   effect(()=>{
     if(this.gano() || this.perdio()){
-      this.guardo.set(true)
+      this._guardo.set(true)
       this.registrarResultadoAhorcardo()
     }
   })
 }
 ngOnInit() {
     setTimeout(() => {
-      this.cargando.set(false);
+      this._cargando.set(false);
     }, 1500);
   }
 
 
 
-palabraOculta = computed(() => {
+readonly palabraOculta = computed(() => {
     return this.palabraAdivinar()
       .split('')
       .map(letra => this.letrasAdivinadas().includes(letra) ? letra : '_')
       .join(' ');
   });
 
-gano = computed(() => !this.palabraOculta().includes('_'));
-perdio = computed(() => this.intentosFallidos() >= this.maxIntentos);
+readonly gano = computed(() => !this.palabraOculta().includes('_'));
+readonly perdio = computed(() => this.intentosFallidos() >= this.maxIntentos);
 
 seleccionarLetra(letra: string) {
     if (this.gano() || this.perdio() || this.letrasAdivinadas().includes(letra)) return;
@@ -70,7 +72,7 @@ seleccionarLetra(letra: string) {
   reiniciar() {
     this.letrasAdivinadas.set([]);
     this.intentosFallidos.set(0);
-    this.guardo.set(false)
+    this._guardo.set(false)
     this.palabraAdivinar.set(this.palabrAleatoria());
   }
 
@@ -80,7 +82,7 @@ seleccionarLetra(letra: string) {
 
 
 
-  async registrarResultadoAhorcardo(){
+  private async registrarResultadoAhorcardo(){
     const user = this.authService.usuario()
     if(!user) return
 

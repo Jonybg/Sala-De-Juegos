@@ -10,23 +10,26 @@ import { LogJuego } from '../../../core/models/LogJuego';
   styleUrl: './mayormenor.css',
 })
 export class Mayormenor implements OnInit {
-  private juegosService = inject(JuegosService);
-  private authService = inject(AuthService);
+  private readonly juegosService = inject(JuegosService);
+  private readonly authService = inject(AuthService);
 
-  cartaActual = signal<number>(this.generarNumero());
-  proximaCarta = signal<number>(this.generarNumero());
-  puntaje = signal<number>(0);
-  perdio = signal<boolean>(false);
-  mensaje = signal<string>('¿La próxima será mayor o menor?');
-  cargando = signal(true)
+  readonly cartaActual = signal<number>(this.generarNumero());
+  readonly proximaCarta = signal<number>(this.generarNumero());
+  readonly puntaje = signal<number>(0);
+  private readonly _perdio = signal<boolean>(false);
+  readonly perdio = this._perdio.asReadonly()
+  private readonly _mensaje = signal<string>('¿La próxima será mayor o menor?');
+  readonly mensaje = this._mensaje.asReadonly()
+  private readonly _cargando = signal<boolean>(true);
+  readonly cargando = this._cargando.asReadonly();
 
   ngOnInit() {
     setTimeout(() => {
-      this.cargando.set(false);
+      this._cargando.set(false);
     }, 1500);
   }
 
-  generarNumero(): number {
+  private generarNumero(): number {
     return Math.floor(Math.random() * 12) + 1;
   }
 
@@ -37,24 +40,24 @@ export class Mayormenor implements OnInit {
     if ((eleccion === 'mayor' && proxima > actual) || 
         (eleccion === 'menor' && proxima < actual)) {
       this.puntaje.update(p => p + 1);
-      this.mensaje.set('¡Correcto! Sigue así.');
+      this._mensaje.set('¡Correcto! Sigue así.');
       this.avanzarCarta();
     } else if (proxima === actual) {
-      this.mensaje.set('¡Empate! No sumas puntos.');
+      this._mensaje.set('¡Empate! No sumas puntos.');
       this.avanzarCarta();
     } else {
-      this.perdio.set(true);
-      this.mensaje.set(`Perdiste. Salió el ${proxima}.`);
+      this._perdio.set(true);
+      this._mensaje.set(`Perdiste. Salió el ${proxima}.`);
       this.registrarResultado();
     }
   }
 
-  avanzarCarta() {
+  private avanzarCarta() {
     this.cartaActual.set(this.proximaCarta());
     this.proximaCarta.set(this.generarNumero());
   }
 
-  async registrarResultado() {
+  private async registrarResultado() {
     const usuario = this.authService.usuario();
     if (!usuario) return;
 
@@ -79,7 +82,7 @@ export class Mayormenor implements OnInit {
     this.cartaActual.set(this.generarNumero());
     this.proximaCarta.set(this.generarNumero());
     this.puntaje.set(0);
-    this.perdio.set(false);
-    this.mensaje.set('¿La próxima será mayor o menor?');
+    this._perdio.set(false);
+    this._mensaje.set('¿La próxima será mayor o menor?');
   }
 }
