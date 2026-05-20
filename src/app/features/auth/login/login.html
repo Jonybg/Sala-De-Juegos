@@ -1,15 +1,27 @@
 <section class="flex flex-col items-center justify-center min-h-3/4 w-full mx-auto mt-[4vh] px-4">
-    <form (ngSubmit)="onSubmit()" [formGroup]="form" class="min-h-80 card-neon w-full sm:w-3/4 md:w-2/4 gap-6 flex flex-col justify-center items-center px-6" >
-            <img class="w-3xs" src="assets/images/logo/pixelzone.png" alt="logo">
+    <form appCardNeon (ngSubmit)="onSubmit()" [formGroup]="form" class="min-h-80  w-full sm:w-3/4 md:w-2/4 gap-6 flex flex-col justify-center items-center px-6">
+
+        <img class="w-3xs" src="assets/images/logo/pixelzone.png" alt="logo">
+
         <label for="email">Email:</label>
         <input placeholder="Gamer@pro.com" id="email" class="w-full sm:w-3/4 p-2" type="text" formControlName="email">
-        @if(form.get('email')?.invalid && form.get('email')?.touched){
-            <span class="text-(--color-error)">Correo Electronico Requerido</span> <br>
+        @if(form.get('email')?.touched){
+            @if(form.get('email')?.hasError('required')){
+                <span class="text-(--color-error)">El correo electrónico es requerido</span>
+            } @else if(form.get('email')?.hasError('email')){
+                <span class="text-(--color-error)">El formato del correo no es válido</span>
+            }
         }
+
+        
         <label for="password">Password:</label>
         <input placeholder="*******" id="password" class="w-full sm:w-3/4 p-2" type="password" formControlName="password">
-        @if(form.get('password')?.invalid && form.get('password')?.touched){
-            <span class="text-(--color-error)">Contraseña Requerida</span>
+        @if(form.get('password')?.touched){
+            @if(form.get('password')?.hasError('required')){
+                <span class="text-(--color-error)">La contraseña es requerida</span>
+            } @else if(form.get('password')?.hasError('minlength')){
+                <span class="text-(--color-error)">La contraseña debe tener al menos {{ form.get('password')?.getError('minlength')?.requiredLength }} caracteres</span>
+            }
         }
         <button  [disabled]="form.invalid" type="submit" class="btn-sesion flex justify-center items-center w-full sm:min-w-40 h-12">
             @if(!loading()){
@@ -24,6 +36,7 @@
             <span class="px-4 text-(--color-text-secondary)">Acceso Rapido</span>
             <div class="grow h-px bg-(--color-text-secondary)"></div>
         </div>
+
         <div class="flex justify-center items-center gap-4 sm:gap-8">
             <div class="flex flex-col justify-center items-center ">
                 <img (click)="fastAccess('test1@gmail.com','123456')" class="img-fast shadow-neon" src="/assets/images/fastAccess/test1.png" />

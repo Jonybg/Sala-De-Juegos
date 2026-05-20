@@ -4,17 +4,17 @@ import { authGuard } from './core/guards/auth-guard';
 export const routes: Routes = [
   {
     path: '',
-    canActivate:[authGuard],
+    canActivate: [authGuard],
     loadComponent: () => import('./core/layout/mainlayout/mainlayout').then(m => m.Mainlayout),
     children: [
       {
         path: '',
-        redirectTo: 'home',
+        loadComponent: () => import('./features/home/home').then(m => m.Home),
         pathMatch: 'full'
       },
       {
-        path: 'home',
-        loadComponent: () => import('./features/home/home').then(m => m.Home)
+        path: 'chat',
+        loadComponent: () => import('./features/chat/chat').then(m => m.Chat)
       },
       {
         path: 'chat',
@@ -60,7 +60,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'auth/login',
+    redirectTo: '',
     pathMatch: 'full'
   }
 ];

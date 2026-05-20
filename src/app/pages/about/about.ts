@@ -1,19 +1,24 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { UserGithub } from '../../core/services/user-github';
+import { CardNeon } from "../../shared/directives/card-neon";
 
 @Component({
   selector: 'app-about',
-  imports: [],
+  imports: [CardNeon],
   templateUrl: './about.html',
   styleUrl: './about.css',
 })
 export class About implements OnInit {
-
-  userGithubService = inject(UserGithub)
-  user = this.userGithubService.user
+//hacerlos privados los atributos de la clase
+  private userGithubService = inject(UserGithub)
+  readonly user = this.userGithubService.user
+  readonly loading = this.userGithubService.loading;
+  readonly error = this.userGithubService.error
   
 ngOnInit(): void {
-  this.userGithubService.loadUserGithub()
-  }
+  setTimeout(() => {
+    this.userGithubService.loadUserGithub();
+  }, 1000); 
+}
  
 }

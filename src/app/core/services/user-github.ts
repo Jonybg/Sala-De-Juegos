@@ -6,10 +6,23 @@ import { UserGithubModel } from '../models/userGithub.model';
 })
 export class UserGithub {
   private http = inject(HttpClient)
-  user = signal<UserGithubModel | null>(null)
   private URL = "https://api.github.com/users/jonybg"
 
+
+  private _userGithub = signal<UserGithubModel | null>(null)
+  private  _loading = signal<boolean>(true);
+  private  _error = signal<string | null>(null);
+
+
+
+  readonly user = this._userGithub.asReadonly();
+  readonly loading = this._loading.asReadonly();
+  readonly error = this._error.asReadonly();
+
   loadUserGithub(){
+    this._loading.set(true)
+    this._error.set(null);
+
     this.http.get<any>(this.URL).subscribe({
       next: (data) =>{
         const userMapeado:UserGithubModel ={
@@ -20,10 +33,12 @@ export class UserGithub {
           repositorios: data.public_repos
 
         }
-      this.user.set(userMapeado)
+      this._userGithub.set(userMapeado)
+      this._loading.set(false)
       },
-      error: (err) => {
-        console.error(err)
+      error: (_err) => {
+        this._error.set("Error al cargador el usuario de github")
+        this._loading.set(false)
       }
     })
   }

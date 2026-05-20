@@ -11,8 +11,8 @@ import { IUser } from '../../core/models/user';
   styleUrl: './home.css',
 })
 export class Home {
-  private AuthService = inject(AuthService)
-  user = this.AuthService.usuario
+  private readonly AuthService = inject(AuthService)
+  readonly user = this.AuthService.usuario
   
   
 
